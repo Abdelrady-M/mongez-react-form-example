@@ -1,6 +1,6 @@
 # Getting Started with Mongez Create App
 
-TThis project was bootstrapped with [Mongez Create App](https://github.com/hassanzohdy/create-mongez-app)..
+This project was bootstrapped with [Mongez Create App](https://github.com/hassanzohdy/create-mongez-app).
 
 ## Available Scripts
 
