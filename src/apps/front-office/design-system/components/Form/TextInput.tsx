@@ -12,7 +12,7 @@ type TextInputProps = {
 } & FormControlProps;
 
 function _TextInput({ containerStyle, ...rest }: TextInputProps, ref: any) {
-  const { id, error, value, inputRef, changeValue, otherProps } =
+  const { id, error, value, inputRef, changeValue, otherProps, name } =
     useFormControl({
       ...rest,
       rules: [requiredRule, minLengthRule],
@@ -30,6 +30,7 @@ function _TextInput({ containerStyle, ...rest }: TextInputProps, ref: any) {
       )}
       <input
         type={rest.type || "text"}
+        name={name}
         {...otherProps}
         id={id}
         ref={_ref => {
