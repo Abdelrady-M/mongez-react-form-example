@@ -1,8 +1,5 @@
 import router, { Route } from "@mongez/react-router";
-import {
-  Guardian,
-  ReverseGuardian,
-} from "apps/front-office/account/middleware";
+
 import BaseLayout from "../design-system/layouts/BaseLayout";
 // import AccountLayout from "../design-system/layouts/AccountLayout";
 
@@ -20,33 +17,33 @@ export function publicRoutes(routes: Route[]) {
  *
  * For Example, Account Dashboard Page | Order History | Wishlist
  */
-export function guardedRoutes(routes: Route[]) {
-  return router.group({
-    layout: BaseLayout,
-    middleware: [Guardian],
-    routes,
-  });
-}
+// export function guardedRoutes(routes: Route[]) {
+//   return router.group({
+//     layout: BaseLayout,
+//     middleware: [Guardian],
+//     routes,
+//   });
+// }
 
 /**
  * Should be used with routes that only un-logged in users can access it
  * For example a logged in user can not access the /login route as he/she is already logged in
  * The Reverse guardian will redirect the user back to the home
- */
-export function reverseGuardedRoutes(routes: Route[]) {
-  return router.group({
-    middleware: [ReverseGuardian],
-    routes,
-  });
-}
+//  */
+// export function reverseGuardedRoutes(routes: Route[]) {
+//   return router.group({
+//     middleware: [ReverseGuardian],
+//     routes,
+//   });
+// }
 
 /**
  * Should be used with guarded routes inside the account dashboard page
  * As the account dashboard routes will have similar layout, this is the preferred way to group them im one layout
  */
-export function accountRoutes(routes: Route[]) {
-  return router.group({
-    middleware: [Guardian],
-    routes,
-  });
-}
+// export function accountRoutes(routes: Route[]) {
+//   return router.group({
+//     middleware: [Guardian],
+//     routes,
+//   });
+// }
