@@ -1,9 +1,11 @@
 import {
   FormControlProps,
+  lengthRule,
   minLengthRule,
   requiredRule,
   useFormControl,
 } from "@mongez/react-form";
+import { cn } from "apps/front-office/design-system/utils/cn";
 import { forwardRef } from "react";
 
 function _TextInputV2(props: FormControlProps, ref: any) {
@@ -17,19 +19,19 @@ function _TextInputV2(props: FormControlProps, ref: any) {
     inputRef,
     otherProps,
     name,
-    errorsList,
   } = useFormControl({
     ...props,
-    rules: [requiredRule, minLengthRule],
+    rules: [requiredRule, minLengthRule, lengthRule],
   });
-  console.log(error);
 
   return (
     <div className="w-full">
       {otherProps.label && (
-        <label htmlFor={id} style={{ display: "block" }}>
+        <label
+          htmlFor={id}
+          className="block text-gray-700 cursor-pointer font-medium text-base mb-2">
           {...otherProps.label}{" "}
-          {props.required && <span style={{ color: "red" }}>*</span>}
+          {props.required && <span className="ms-1 text-red-500">*</span>}
         </label>
       )}
 
@@ -49,21 +51,23 @@ function _TextInputV2(props: FormControlProps, ref: any) {
         }}
         disabled={disabled}
         {...otherProps}
-        style={{ width: "100%" }}
-        className={otherProps.className}
+        className={cn(
+          "mt-1 block w-full p-2 bg-white border border-border rounded-md text-base placeholder-slate-400 focus:outline-none focus:border-primary-main ",
+          error && "border-l-[2px] border-l-red-500 focus:border-l-red-500",
+          value &&
+            !error &&
+            "border-l-[2px] border-l-green-500 focus:border-l-green-500",
+          otherProps.className,
+        )}
       />
 
-      <div style={{ color: "red" }}>{error && <span>{error}</span>}</div>
-      {errorsList.minLength && (
-        <span
-          style={{
-            color: "red",
-            fontSize: "16px",
-            fontWeight: "bold",
-          }}>
-          {errorsList.minLength}
-        </span>
-      )}
+      <div
+        className={cn(
+          "text-red-500 text-sm mt-1 transition-all duration-200 overflow-hidden h-0 ",
+          error && "h-[20px]",
+        )}>
+        <span>{error}</span>
+      </div>
     </div>
   );
 }
